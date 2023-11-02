@@ -101,3 +101,11 @@ my_table3 = my_table1.join(my_table2, 'country')
 my_table3_filtered = my_table3.filter(lambda x: x['EU'] == 'no').filter(
     lambda x: float(x['temperature']) < 5.0)
 print(my_table3_filtered.table)
+
+my_table3_eu = my_table3.filter(lambda x: x['EU'] == "yes" and x["coastline"] == "no")
+print("min and max temperatures for cities in EU that do not have coastlines = ", end="")
+print(min([float(x["temperature"]) for x in my_table3_eu.table]), "and",
+      max([float(x["temperature"]) for x in my_table3_eu.table]), "respectively")
+print("min and max latitude for cities in every country = ", end="")
+print(min([float(x["latitude"]) for x in my_table3.table]), "and",
+      max([float(x["latitude"]) for x in my_table3.table]), "respectively")
